@@ -1,0 +1,66 @@
+{
+  "name": "gatsby-firebase-hosting-starter",
+  "private": true,
+  "description": "Gatsby starter with Firebase hosting configuration",
+  "version": "0.1.0",
+  "author": "James Wakefield <james.wakefield@debijenkorf.nl>",
+  "dependencies": {
+    "gatsby": "^2.2.13",
+    "gatsby-image": "^2.0.34",
+    "gatsby-plugin-manifest": "^2.0.24",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-react-helmet": "^3.0.11",
+    "gatsby-plugin-sharp": "^2.0.31",
+    "gatsby-source-filesystem": "^2.0.28",
+    "gatsby-transformer-sharp": "^2.1.17",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-helmet": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
+    "babel-preset-gatsby": "^0.1.10",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.15.3",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.3.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.5.0",
+    "lint-staged": "^8.1.5",
+    "react-test-renderer": "^16.8.5"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "jest -c tests/jest-config.js",
+    "validate": "eslint -c config/.eslintrc.js . && npm run test",
+    "precommit": "lint-staged -c config/.lintstagedrc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bijenkorf-james-wakefield/gatsby-firebase-hosting-starter"
+  },
+  "bugs": {
+    "url": "https://github.com/bijenkorf-james-wakefield/gatsby-firebase-hosting-starter/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

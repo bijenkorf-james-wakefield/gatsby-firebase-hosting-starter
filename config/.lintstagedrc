@@ -1,0 +1,6 @@
+"linters": {
+    "*.{js,jsx,json}": [
+      "eslint -c config/.eslintrc.js --fix",
+      "git add"
+    ],
+}
