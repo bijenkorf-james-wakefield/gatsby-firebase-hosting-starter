@@ -14,11 +14,23 @@ _Have another more specific idea? You may want to check out our vibrant collecti
 
 ## Prerequisites
 
-1. Install Firebase CLI - see [documentation](https://firebase.google.com/docs/hosting/quickstart)
+1. [A Firebase account](https://console.firebase.google.com/).
 
-2. Install Google Cloud SDK - see [documentation](https://cloud.google.com/sdk/install)
+2. A Firebase project.
 
-3. Your project's code in a remote GIT repository (Github or Bitbucket)
+3. Install Firebase CLI - see [documentation](https://firebase.google.com/docs/hosting/quickstart#install-cli)
+
+4. A Firebase deploy token (FIREBASE_DEPLOY_TOKEN). See [Documentation](https://firebase.google.com/docs/cli/#command_reference)
+
+```bash
+$ firebase login:ci
+```
+
+4. [A Google Cloud account](https://console.cloud.google.com)
+
+5. Install Google Cloud SDK - see [documentation](https://cloud.google.com/sdk/install)
+
+6. Your project's code in a remote GIT repository (Github, Bitbucket or Cloud Source repository)
 
 ## 🚀 Quick start
 
@@ -47,6 +59,63 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
     Open the `my-firebase-hosting-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+
+1.  **Associate your project with a Firebase Project**
+
+    If you have not done so already, first login to firebase from the command line:
+
+    ```bash
+    $ firebase login
+    ```
+
+    Check that you have access to your firebase project:
+
+    ```bash
+    # list available firebase projects
+    $ firebase list
+    ```
+
+    Associate this project directory with a Firebase project. When prompted choose the alias of your choice (e.g. default).
+
+    ```bash
+    $ firebase use --add
+    ```
+
+1.  **Setup Cloud Build**
+
+- Login to the [Google Cloud Console](https://console.cloud.google.com)
+- Click the project dropdown menu. In the dialog that opens select the 'ALL' tab. Select the Firebase project you wish to use.
+- Navigate to the [Cloud Build](https://console.cloud.google.com/cloud-build/builds) section
+- Click 'Enable Cloud Build API'. (If you are prompted to setup billing, instructions on how to do this can be found [here](https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project) or navigate directly to the [Billing](https://console.cloud.google.com/billing) section)
+- Login to Google Cloud on the command line
+
+```bash
+$ gcloud auth login
+```
+
+- Check that you have access to your project
+
+```bash
+$ gcloud projects list
+```
+
+- Associate this project directory with your gcloud project.
+
+```bash
+$ gcloud config set project PROJECT_ID
+```
+
+- Submit a build to Cloud Build which uses the cloudbuild.yaml build config and the source in the `firebase` directory. The build installs the firebase tool in the environment. Then, the tool is containerized and pushed to your Container Registry.
+
+```bash
+gcloud builds submit --config=./firebase/cloudbuild.yaml ./firebase/
+```
+
+- Run your first deploy from the command line to check everything is working correctly
+
+```bash
+gcloud builds submit --config=cloudbuild.deploy.yaml . --substitutions=_FIREBASE_DEPLOY_TOKEN="[FIREBASE_DEPLOY_TOKEN]"
+```
 
 ## 🧐 What's inside?
 
@@ -135,6 +204,6 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 ## 💫 Deploy
 
-Setup Google Cloudbuild for your firebase project and setup deployment triggers.
+If you followed the section Setup Cloud Build all you should need to do now is to [setup a build trigger](https://console.cloud.google.com/cloud-build/triggers) to run a deploy using your FIREBASE_DEPLOY_TOKEN listening for changes in your remote git repository.
 
 <!-- AUTO-GENERATED-CONTENT:END -->
