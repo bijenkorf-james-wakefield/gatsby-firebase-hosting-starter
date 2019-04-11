@@ -48,7 +48,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest -c tests/jest-config.js",
-    "validate": "eslint -c config/.eslintrc.js . && npm run test",
+    "validate": "eslint . && npm run test",
     "precommit": "lint-staged -c config/.lintstagedrc"
   },
   "repository": {
